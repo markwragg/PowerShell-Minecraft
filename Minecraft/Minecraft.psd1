@@ -33,7 +33,7 @@ Copyright = '(c) 2026 Mark Wragg. All rights reserved.'
 Description = 'PowerShell commands for Minecraft.'
 
 # Minimum version of the PowerShell engine required by this module
-PowerShellVersion = '2.0'
+PowerShellVersion = '1.0'
 
 # Name of the PowerShell host required by this module
 # PowerShellHostName = ''

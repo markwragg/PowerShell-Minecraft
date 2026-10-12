@@ -5,9 +5,11 @@
 
 A PowerShell module of commands useful to Minecraft players, starting with coordinate conversion helpers.
 
+![Minecraft PowerShell](Media/minecraft-powershell.jpeg)
+
 ## Requirements
 
-- PowerShell 5.1 or newer.
+- PowerShell 1.0 or newer.
 
 ## Installation
 

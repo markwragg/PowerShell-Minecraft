@@ -1,0 +1,6 @@
+# Build output
+/Artifacts/
+/Staging/
+
+# Transient clone of the GitHub wiki repo, created by the UpdateWiki build task
+/wiki/

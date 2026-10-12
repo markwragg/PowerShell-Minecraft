@@ -1,6 +1,7 @@
 # Powershell-Minecraft
 
 [![Build Status](https://dev.azure.com/markwragg/GitHub/_apis/build/status/markwragg.Powershell-Minecraft?branchName=main)](https://dev.azure.com/markwragg/GitHub/_build/latest?definitionId=1&branchName=main)
+![coverage](https://img.shields.io/badge/coverage-0%25-grey.svg)
 
 A PowerShell module of commands useful to Minecraft players, starting with coordinate conversion helpers.
 

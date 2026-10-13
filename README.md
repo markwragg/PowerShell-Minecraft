@@ -2,6 +2,8 @@
 
 [![Build Status](https://dev.azure.com/markwragg/GitHub/_apis/build/status/markwragg.Powershell-Minecraft?branchName=main)](https://dev.azure.com/markwragg/GitHub/_build/latest?definitionId=1&branchName=main)
 ![coverage](https://img.shields.io/badge/coverage-100%25-brightgreen.svg)
+[![PowerShell Gallery Version](https://img.shields.io/powershellgallery/v/xkcd?label=PS%20Gallery)](https://www.powershellgallery.com/packages/Minecraft)
+[![PowerShell Gallery Downloads](https://img.shields.io/powershellgallery/dt/minecraft?color=D3D3D3)](https://www.powershellgallery.com/packages/Minecraft)
 
 A PowerShell module of commands useful to Minecraft players, starting with coordinate conversion helpers.
 
@@ -13,12 +15,11 @@ A PowerShell module of commands useful to Minecraft players, starting with coord
 
 ## Installation
 
-Clone this repository and import the module directly:
+This module is published in the PowerShell Gallery so if you have PS5.1 or newer can be installed via:
 
 ```powershell
-Import-Module ./Minecraft
+Install-Module Minecraft
 ```
-
 ## Usage Examples
 
 1) `Get-NetherCoordinates -X 800 -Y -400`

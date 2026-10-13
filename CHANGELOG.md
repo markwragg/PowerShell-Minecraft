@@ -1,5 +1,5 @@
 # Changelog
 
-## 0.0.0
+## !Deploy
 
 - Initial release with `Get-NetherCoordinates`.

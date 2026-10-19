@@ -11,7 +11,7 @@ A PowerShell module of commands useful to Minecraft players, starting with coord
 
 ## Requirements
 
-- PowerShell 1.0 or newer.
+- PowerShell 5.1 or newer.
 
 ## Installation
 

@@ -1,6 +1,6 @@
 # Changelog
 
-## !Deploy 0.2.0
+## [0.2.0] - 2026-10-19
 
 - Added `ConvertTo-ChunkCoordinates` and `ConvertTo-RegionCoordinates`, to convert block coordinates to their containing chunk/region.
 - Added `Get-Distance`, to calculate the horizontal distance between two sets of coordinates.

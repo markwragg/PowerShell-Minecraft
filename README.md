@@ -54,6 +54,30 @@ X   Z
 
 Returns a simple coordinates object with X and Z properties, e.g. for piping into `ConvertTo-NetherCoordinates` or `ConvertTo-OverworldCoordinates`.
 
+6) `ConvertTo-ChunkCoordinates -X 48 -Z -5` / `ConvertTo-RegionCoordinates -X 600 -Z -5`
+
+Converts block coordinates into the ChunkX/ChunkZ coordinates of the chunk (16x16 blocks), or the RegionX/RegionZ coordinates of the region file (32x32 chunks), that contains them.
+
+7) `Get-Distance -From (New-Coordinates -X 0 -Z 0) -To (New-Coordinates -X 300 -Z 400)`
+
+Returns 500, the horizontal block distance between two sets of coordinates.
+
+8) `Test-SlimeChunk -Seed 12345 -X 48 -Z -32` / `Test-SlimeChunk -Edition Bedrock -X 48 -Z -32`
+
+Returns whether the chunk containing the given block coordinates is a slime chunk, replicating each edition's own algorithm (`-Edition` defaults to `Java`). Any block coordinate within the same chunk returns the same result, so this can be fed directly from `New-Coordinates` or either of the Nether/Overworld converters. Java uses the world Seed; Bedrock doesn't depend on the seed at all, so `-Seed` is ignored when `-Edition Bedrock` is used.
+
+9) `ConvertTo-ExperiencePoints -Level 30` / `ConvertTo-ExperienceLevel -Points 1200`
+
+Converts between a Minecraft experience level and the total experience points required to reach it.
+
+10) `ConvertTo-GameTicks -Time (New-TimeSpan -Minutes 20)` / `ConvertFrom-GameTicks -Ticks 24000`
+
+Converts between real-world time and Minecraft game ticks (20 ticks per second; a full day/night cycle is 24000 ticks).
+
+11) `Set-MinecraftDefault -Seed 12345 -Edition Bedrock`
+
+Stores default values (currently Seed and Edition) in `$HOME/.minecraft/defaults.json`, so they don't need to be supplied on every call -- e.g. `Test-SlimeChunk -X 48 -Z -32` will then use the stored Seed/Edition automatically. Either can be set independently. Use `Get-MinecraftDefault` to view what's currently stored.
+
 ## Contributions
 
 Code contributions via issues and/or pull requests are welcomed.

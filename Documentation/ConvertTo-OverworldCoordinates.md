@@ -6,12 +6,12 @@ Converts Nether coordinates to their equivalent Overworld coordinates.
 ## SYNTAX
 
 ```
-ConvertTo-OverworldCoordinates [-X] <Double> [-Y] <Double> [-ProgressAction <ActionPreference>]
+ConvertTo-OverworldCoordinates [-X] <Double> [-Z] <Double> [-ProgressAction <ActionPreference>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-The ConvertTo-OverworldCoordinates cmdlet converts a pair of Nether X/Y coordinates into the equivalent
+The ConvertTo-OverworldCoordinates cmdlet converts a pair of Nether X/Z coordinates into the equivalent
 Overworld coordinates, by multiplying each value by 8, reflecting the Nether's 1:8 scale relative to
 the Overworld.
 
@@ -19,25 +19,25 @@ the Overworld.
 
 ### EXAMPLE 1
 ```
-ConvertTo-OverworldCoordinates -X 100 -Y -50
+ConvertTo-OverworldCoordinates -X 100 -Z -50
 ```
 
-Returns the Overworld coordinates equivalent to Nether coordinates X 100, Y -50, i.e.
-X 800, Y -400.
+Returns the Overworld coordinates equivalent to Nether coordinates X 100, Z -50, i.e.
+X 800, Z -400.
 
 ### EXAMPLE 2
 ```
 ConvertTo-OverworldCoordinates 200 30
 ```
 
-X and Y are positional, so they don't need to be named explicitly.
+X and Z are positional, so they don't need to be named explicitly.
 
 ### EXAMPLE 3
 ```
-[pscustomobject]@{ X = 30; Y = 11 } | ConvertTo-OverworldCoordinates
+[pscustomobject]@{ X = 30; Z = 11 } | ConvertTo-OverworldCoordinates
 ```
 
-X and Y can also be supplied via the pipeline by property name, e.g.
+X and Z can also be supplied via the pipeline by property name, e.g.
 from an object such as one
 recording a player's Nether position.
 
@@ -58,8 +58,8 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -Y
-The Nether Y coordinate to convert.
+### -Z
+The Nether Z coordinate to convert.
 
 ```yaml
 Type: Double
@@ -74,7 +74,7 @@ Accept wildcard characters: False
 ```
 
 ### -ProgressAction
-{{Fill ProgressAction Description}}
+{{ Fill ProgressAction Description }}
 
 ```yaml
 Type: ActionPreference
@@ -89,8 +89,7 @@ Accept wildcard characters: False
 ```
 
 ### CommonParameters
-This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable.
-For more information, see about_CommonParameters (http://go.microsoft.com/fwlink/?LinkID=113216).
+This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
 ## INPUTS
 

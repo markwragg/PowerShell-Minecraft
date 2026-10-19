@@ -22,33 +22,37 @@ Install-Module Minecraft
 ```
 ## Usage Examples
 
-1) `ConvertTo-NetherCoordinates -X 800 -Y -400`
+1) `ConvertTo-NetherCoordinates -X 800 -Z -400`
 
 Converts a pair of Overworld coordinates into their equivalent Nether coordinates, by dividing each value by 8 -- reflecting the Nether's 1:8 scale relative to the Overworld. Returns:
 
 ```
-X   Y
+X   Z
 -   -
 100 -50
 ```
 
 2) `ConvertTo-NetherCoordinates 1600 240`
 
-X and Y are positional, so they don't need to be named explicitly.
+X and Z are positional, so they don't need to be named explicitly.
 
-3) `[pscustomobject]@{ X = 240; Y = 88 } | ConvertTo-NetherCoordinates`
+3) `[pscustomobject]@{ X = 240; Z = 88 } | ConvertTo-NetherCoordinates`
 
-X and Y can also be supplied via the pipeline by property name.
+X and Z can also be supplied via the pipeline by property name.
 
-4) `ConvertTo-OverworldCoordinates -X 100 -Y -50`
+4) `ConvertTo-OverworldCoordinates -X 100 -Z -50`
 
 Converts a pair of Nether coordinates into their equivalent Overworld coordinates, by multiplying each value by 8. Returns:
 
 ```
-X   Y
+X   Z
 -   -
 800 -400
 ```
+
+5) `New-Coordinates -X 800 -Z -400`
+
+Returns a simple coordinates object with X and Z properties, e.g. for piping into `ConvertTo-NetherCoordinates` or `ConvertTo-OverworldCoordinates`.
 
 ## Contributions
 

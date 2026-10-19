@@ -1,5 +1,10 @@
 # Changelog
 
+## !Deploy
+
+- Renamed Y parameters to Z as Y in Minecraft is height (breaking change).
+- Added `New-Coordinates`, to create a coordinates object with X and Z properties.
+
 ## [0.1.0] - 2026-10-19
 
 - Renamed `Get-NetherCoordinates` to `ConvertTo-NetherCoordinates` (breaking change).

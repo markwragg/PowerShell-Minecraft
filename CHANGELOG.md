@@ -1,6 +1,6 @@
 # Changelog
 
-## !Deploy
+## [0.1.1] - 2026-10-19
 
 - Renamed Y parameters to Z as Y in Minecraft is height (breaking change).
 - Added `New-Coordinates`, to create a coordinates object with X and Z properties.

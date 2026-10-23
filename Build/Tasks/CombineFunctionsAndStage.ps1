@@ -13,7 +13,9 @@ Task 'CombineFunctionsAndStage' -Depends 'Clean' {
 
     # Combine functions into a single .psm1 module
     $combinedModulePath = Join-Path -Path $StagingModulePath -ChildPath "$($env:BHProjectName).psm1"
-    @($publicFunctions + $privateFunctions) | Get-Content | Add-Content -Path $combinedModulePath
+
+    $combinedContent = @($publicFunctions + $privateFunctions) | Get-Content -Encoding UTF8
+    [System.IO.File]::WriteAllLines($combinedModulePath, [string[]]$combinedContent, (New-Object System.Text.UTF8Encoding($true)))
 
     # Copy other required folders and files if they exist
     $PathsToCopy = @(

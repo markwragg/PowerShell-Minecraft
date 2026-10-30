@@ -22,9 +22,13 @@ Install-Module Minecraft
 ```
 ## Usage Examples
 
-1) `ConvertTo-NetherCoordinates -X 800 -Z -400`
+Convert a pair of Overworld coordinates into their equivalent Nether coordinates, by dividing each value by 8 -- reflecting the Nether's 1:8 scale relative to the Overworld:
 
-Converts a pair of Overworld coordinates into their equivalent Nether coordinates, by dividing each value by 8 -- reflecting the Nether's 1:8 scale relative to the Overworld. Returns:
+```powershell
+ConvertTo-NetherCoordinates -X 800 -Z -400
+```
+
+Returns:
 
 ```
 X   Z
@@ -32,17 +36,25 @@ X   Z
 100 -50
 ```
 
-2) `ConvertTo-NetherCoordinates 1600 240`
+X and Z are positional, so they don't need to be named explicitly:
 
-X and Z are positional, so they don't need to be named explicitly.
+```powershell
+ConvertTo-NetherCoordinates 1600 240
+```
 
-3) `[pscustomobject]@{ X = 240; Z = 88 } | ConvertTo-NetherCoordinates`
+X and Z can also be supplied via the pipeline by property name:
 
-X and Z can also be supplied via the pipeline by property name.
+```powershell
+[pscustomobject]@{ X = 240; Z = 88 } | ConvertTo-NetherCoordinates
+```
 
-4) `ConvertTo-OverworldCoordinates -X 100 -Z -50`
+Convert a pair of Nether coordinates into their equivalent Overworld coordinates, by multiplying each value by 8:
 
-Converts a pair of Nether coordinates into their equivalent Overworld coordinates, by multiplying each value by 8. Returns:
+```powershell
+ConvertTo-OverworldCoordinates -X 100 -Z -50
+```
+
+Returns:
 
 ```
 X   Z
@@ -50,33 +62,104 @@ X   Z
 800 -400
 ```
 
-5) `New-Coordinates -X 800 -Z -400`
+Return a simple coordinates object with X and Z properties, e.g. for piping into `ConvertTo-NetherCoordinates` or `ConvertTo-OverworldCoordinates`:
 
-Returns a simple coordinates object with X and Z properties, e.g. for piping into `ConvertTo-NetherCoordinates` or `ConvertTo-OverworldCoordinates`.
+```powershell
+New-Coordinates -X 800 -Z -400
+```
 
-6) `ConvertTo-ChunkCoordinates -X 48 -Z -5` / `ConvertTo-RegionCoordinates -X 600 -Z -5`
+Convert block coordinates into the ChunkX/ChunkZ coordinates of the chunk (16x16 blocks), or the RegionX/RegionZ coordinates of the region file (32x32 chunks), that contains them:
 
-Converts block coordinates into the ChunkX/ChunkZ coordinates of the chunk (16x16 blocks), or the RegionX/RegionZ coordinates of the region file (32x32 chunks), that contains them.
+```powershell
+ConvertTo-ChunkCoordinates -X 48 -Z -5
+```
+```plaintext
+ChunkX ChunkZ
+------ ------
+     3     -1
+```
+```powershell
+ConvertTo-RegionCoordinates -X 600 -Z -5
+```
+```plaintext
+RegionX RegionZ
+------- -------
+      1      -1
+```
 
-7) `Get-Distance -From (New-Coordinates -X 0 -Z 0) -To (New-Coordinates -X 300 -Z 400)`
+Return the horizontal block distance between two sets of coordinates:
 
-Returns 500, the horizontal block distance between two sets of coordinates.
+```powershell
+Get-Distance -From (New-Coordinates -X 0 -Z 0) -To (New-Coordinates -X 300 -Z 400)
+```
+```plaintext
+500
+```
 
-8) `Test-SlimeChunk -Seed 12345 -X 48 -Z -32` / `Test-SlimeChunk -Edition Bedrock -X 48 -Z -32`
+Return whether the chunk containing the given block coordinates is a slime chunk, replicating each edition's own algorithm (`-Edition` defaults to `Java`). Any block coordinate within the same chunk returns the same result, so this can be fed directly from `New-Coordinates` or either of the Nether/Overworld converters. Java uses the world Seed; Bedrock doesn't depend on the seed at all, so `-Seed` is ignored when `-Edition Bedrock` is used:
 
-Returns whether the chunk containing the given block coordinates is a slime chunk, replicating each edition's own algorithm (`-Edition` defaults to `Java`). Any block coordinate within the same chunk returns the same result, so this can be fed directly from `New-Coordinates` or either of the Nether/Overworld converters. Java uses the world Seed; Bedrock doesn't depend on the seed at all, so `-Seed` is ignored when `-Edition Bedrock` is used.
+```powershell
+Test-SlimeChunk -Seed 12345 -X 48 -Z -32
+```
+```plaintext
+False
+```
+```powershell
+Test-SlimeChunk -Edition Bedrock -X 48 -Z -32
+```
+```plaintext
+False
+```
 
-9) `ConvertTo-ExperiencePoints -Level 30` / `ConvertTo-ExperienceLevel -Points 1200`
+Convert between a Minecraft experience level and the total experience points required to reach it:
 
-Converts between a Minecraft experience level and the total experience points required to reach it.
+```powershell
+ConvertTo-ExperiencePoints -Level 30
+```
+```plaintext
+1395
+```
+```powershell
+ConvertTo-ExperienceLevel -Points 1200
+```
+```plaintext
+Level Progress
+----- --------
+   28     0.14
+```
 
-10) `ConvertTo-GameTicks -Time (New-TimeSpan -Minutes 20)` / `ConvertFrom-GameTicks -Ticks 24000`
+Convert between real-world time and Minecraft game ticks (20 ticks per second; a full day/night cycle is 24000 ticks):
 
-Converts between real-world time and Minecraft game ticks (20 ticks per second; a full day/night cycle is 24000 ticks).
+```powershell
+ConvertTo-GameTicks -Time (New-TimeSpan -Minutes 20)
+```
+```plaintext
+24000
+```
+```powershell
+ConvertFrom-GameTicks -Ticks 24000
+```
+```plaintext
+Days              : 0
+Hours             : 0
+Minutes           : 20
+Seconds           : 0
+Milliseconds      : 0
+Ticks             : 12000000000
+TotalDays         : 0.0138888888888889
+TotalHours        : 0.333333333333333
+TotalMinutes      : 20
+TotalSeconds      : 1200
+TotalMilliseconds : 1200000
+```
 
-11) `Set-MinecraftDefault -Seed 12345 -Edition Bedrock`
+### Save parameter defaults
 
-Stores default values (currently Seed and Edition) in `$HOME/.minecraft/defaults.json`, so they don't need to be supplied on every call -- e.g. `Test-SlimeChunk -X 48 -Z -32` will then use the stored Seed/Edition automatically. Either can be set independently. Use `Get-MinecraftDefault` to view what's currently stored.
+Store default values (currently Seed and Edition) in `$HOME/.minecraft/defaults.json`, so they don't need to be supplied on every call -- e.g. `Test-SlimeChunk -X 48 -Z -32` will then use the stored Seed/Edition automatically. Either can be set independently. Use `Get-MinecraftDefault` to view what's currently stored:
+
+```powershell
+Set-MinecraftDefault -Seed 12345 -Edition Bedrock
+```
 
 ## Contributions
 

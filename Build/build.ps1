@@ -63,6 +63,11 @@ if ($PSBoundParameters.Keys -contains 'ResolveDependency') {
 # Init BuildHelpers
 Set-BuildEnvironment -Force
 
+if ($env:GITHUB_ACTIONS -eq 'true') {
+    $env:BHBuildSystem = 'GitHub Actions'
+    $env:BHBranchName = $env:GITHUB_REF_NAME
+    $env:BHBuildNumber = $env:GITHUB_RUN_NUMBER
+}
 
 # Execute PSake tasts
 $invokePsakeParams = @{

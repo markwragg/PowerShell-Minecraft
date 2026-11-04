@@ -1,6 +1,7 @@
 # Build output
 /Artifacts/
 /Staging/
+/**/coverage.xml
 
 # Transient clone of the GitHub wiki repo, created by the UpdateWiki build task
 /wiki/

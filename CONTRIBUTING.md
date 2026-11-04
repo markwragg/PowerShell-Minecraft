@@ -14,7 +14,7 @@ Contributions to this module are welcomed. Please consider the following guidanc
 
 ## Deployment
 
-This module uses Azure Pipelines for CI/CD. When a version of the code is ready for deployment, the following change needs to be committed in order for a new version to be deployed to the PowerShell Gallery:
+This module uses GitHub Actions for CI/CD. When a version of the code is ready for deployment, the following change needs to be committed in order for a new version to be deployed to the PowerShell Gallery:
 
 - Update [CHANGELOG.md](CHANGELOG.md) to have a new section, titled `## !Deploy` followed by a list of changes for the new version.
   - By default this deploys the next version after whatever is currently published on the PowerShell Gallery (patch/build number bumped by 1). To deploy a specific version instead, append it to the heading, e.g. `## !Deploy 1.2.0` -- the build will fail if that version isn't later than what's already published.

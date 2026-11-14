@@ -110,7 +110,7 @@ PrivateData = @{
         # IconUri = ''
 
         # ReleaseNotes of this module
-        ReleaseNotes = 'https://github.com/markwragg/Powershell-Minecraft/blob/main/README.md'
+        ReleaseNotes = 'https://github.com/markwragg/PowerShell-Minecraft/blob/main/CHANGELOG.md'
 
         # Prerelease string of this module
         # Prerelease = ''
